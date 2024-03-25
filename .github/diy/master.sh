@@ -19,10 +19,9 @@ rm -rf $1
 }
 
 
-git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb                 # 克隆到 .github 目录内, 与diy、workflows、同个路径
-# git clone --depth 1 https://github.com/kenzok78/luci-app-adguardhome
-git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced
-git clone --depth 1 https://github.com/honwen/luci-app-aliddns
+git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb.git                 # 克隆到 .github 目录内, 与diy、workflows、同个路径
+git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced.git
+git clone --depth 1 https://github.com/honwen/luci-app-aliddns.git
 git clone --depth 1 https://github.com/sbwml/luci-app-alist openwrt-alist && mv -n openwrt-alist/*alist ./ ; rm -rf openwrt-alist alist            ## 保留目录：luci-app-alist   删除目录：openwrt-alist + alist
 git clone --depth 1 https://github.com/messense/aliyundrive-webdav aliyundrive-webdav && mv -n aliyundrive-webdav/openwrt/* ./ ; rm -rf aliyundrive-webdav
 git clone --depth 1 https://github.com/ophub/luci-app-amlogic amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic
@@ -70,9 +69,15 @@ rm -rf ddns-go smartdns
 
 # git clone --depth 1 https://github.com/QiuSimons/openwrt-mos && mv -n openwrt-mos/*mosdns ./ ; rm -rf openwrt-mos   # 保留插件：mosdns + luci-app-mosdns
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns openwrt-mos && mv -n openwrt-mos/{*mosdns,v2dat} ./; rm -rf openwrt-mos      # 保留插件：v2dat + mosdns + luci-app-mosdns
+git clone --depth 1 https://github.com/destan19/OpenAppFilter.git OpenAppFilter && mv -n OpenAppFilter/luci-app-oaf ./; rm -rf OpenAppFilter
+git clone --depth 1 https://github.com/zzsj0928/luci-app-pushbot.git
+git clone --depth 1 https://github.com/thinktip/luci-theme-neobird.git
 
 
 
+
+
+# ------------------------------------------------------------------------------------
 sed -i \
 -e 's?include \.\./\.\./\(lang\|devel\)?include $(TOPDIR)/feeds/packages/\1?' \
 -e 's?2. Clash For OpenWRT?3. Applications?' \
