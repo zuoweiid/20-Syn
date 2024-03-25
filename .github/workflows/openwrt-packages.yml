@@ -104,8 +104,8 @@ jobs:
         if git status --porcelain | grep .; then            ## 判断！ 当插件有更新差异时，提交，
           git add .
           git commit -am "update $(date '+%Y-%m-%d %H:%M:%S')"
-          git push --quiet "https://${{ secrets.ACCESS_TOKEN }}@github.com/zuoweiid/app.git" HEAD:${{matrix.target}}     ## 上传仓库的地址（新创建的仓库）
-          # git remote add origin git@github.com:zuoweiid/app.git
+          git push --quiet "https://${{ secrets.ACCESS_TOKEN }}@github.com/zuoweiid/luci-app.git" HEAD:${{matrix.target}}     ## 上传仓库的地址（新创建的仓库）
+          # git remote add origin git@github.com:zuoweiid/luci-app.git
         else
           echo "nothing to commit"                          ## 反之提示： “没有什么可提交的”
           exit 0
