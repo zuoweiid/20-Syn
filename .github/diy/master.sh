@@ -19,7 +19,7 @@ rm -rf $1
 }
 
 
-git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb                 # 克隆到 .github 目录内,与 diy   workflows 目录同在
+git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb                 # 克隆到 .github 目录内, 与diy、workflows、同个路径
 # git clone --depth 1 https://github.com/kenzok78/luci-app-adguardhome
 git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced
 git clone --depth 1 https://github.com/honwen/luci-app-aliddns

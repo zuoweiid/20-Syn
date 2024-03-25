@@ -6,7 +6,7 @@ on:
       - '.github/workflows/openwrt-packages.yml'       ## 运行 openwrt-packages 工作流
       - 'master.sh'  
   schedule:                                            ## 定时触发开始编译(时间设置请看定时编译说明)
-    - cron: 0 */6 * * *
+    - cron: 0 */6 * * *                                ## 每隔6个小时运行一次
   repository_dispatch:                                 ## 存储库调度
   workflow_dispatch:                                   ## 工作流程_调度
     inputs:
