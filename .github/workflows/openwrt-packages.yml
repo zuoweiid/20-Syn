@@ -1,0 +1,120 @@
+name: openwrt-packages        ## Actions工作流的名称
+
+on:
+  push:
+    paths:
+      - '.github/workflows/openwrt-packages.yml'       ## 运行 openwrt-packages 工作流
+      - 'master.sh'  
+  schedule:                                            ## 定时触发开始编译(时间设置请看定时编译说明)
+    - cron: 0 */6 * * *
+  repository_dispatch:                                 ## 存储库调度
+  workflow_dispatch:                                   ## 工作流程_调度
+    inputs:
+      packages:
+        description: 'packages'                        ## 手动运行工作流 
+        required: false
+        default: 'false'	
+
+jobs:
+  job_openwrt-packages:
+    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
+    runs-on: ubuntu-latest                 ## ubuntu-最新版
+
+    name: 更新openwrt-packages             ## 运行工作流的名称 Update openwrt-packages
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [master]                   ## 运行master脚本（在DIY目录内）
+        
+    steps:
+    - name: 准备环境                      ## Checkout 
+      uses: actions/checkout@main
+      with:
+        fetch-depth: 0
+
+    - name: 安装编译环境                ## Initialization environment
+      run : |
+        pwd && ls
+        
+        git config --global user.email "zuoweiid@users.noreply.github.com"         ## 设置提交电子邮件地址
+        git config --global user.name "actions-user"                               ## 名称
+        sudo timedatectl set-timezone "Asia/Shanghai"                              ## 时区为上海
+        
+        
+    # - name: SSH链接（到此预计10分钟）             ## SSH connection to Actions
+      # uses: P3TERX/ssh2actions@v1.0.0
+      # env:
+        # TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        # TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        
+    - name: 克隆软件包                   ## Clone packages
+      run: |
+        pwd && ls
+        
+        cd $GITHUB_WORKSPACE                            ## 进入仓库工作目录
+        chmod +x .github/diy/${{matrix.target}}.sh      ## diy目录内的所有脚本  增加可执行的权限
+        git clone -b master https://github.com/zuoweiid/luci-app.git ${{matrix.target}}     ## 克隆插件 软件包到master目录内
+        cd ${{matrix.target}}                                                               ## 进入master目录内
+        
+        # rm -rf {LICENSE,README,README.md}
+        # rm -rf ./*/{LICENSE,README,README.md}
+        # rm -rf ./*/*/{LICENSE,README,README.md}         ## 删除无用说明
+        
+        
+        git rm -r --cache * >/dev/null 2>&1 &                                           ## 清除克隆的插件多余的名称，只显示插件版本号 方便比较；并保存至 index 文件内：.github/master/.git/index
+        rm -rf `find ./* -maxdepth 0 -type d ! -name "diy"` >/dev/null 2>&1             ## 删除当前所有插件源码，（只保存插件版本号在 index内）
+        $GITHUB_WORKSPACE/.github/diy/${{matrix.target}}.sh                             ## 执行master.sh       重新克隆 最新的插件
+        bash /$GITHUB_WORKSPACE/.github/diy/convert_translation.sh                      ## 执行convert_translation.sh  全部改成zh-cn中文
+        bash /$GITHUB_WORKSPACE/.github/diy/create_acl_for_luci.sh -a                   ## 执行create_acl_for_luci.sh  输入报错提示
+        bash /$GITHUB_WORKSPACE/.github/diy/Modify.sh                                   ## 执行Modify.sh    删除插件包内（.git .svn 等多余的文件）
+
+        
+        # cd .github
+        # chmod +x .github/diy/*.sh
+        # git clone -b master https://github.com/kenzok8/openwrt-packages.git .github/master
+        # cd .github/master
+        # git rm -r --cache * >/dev/null 2>&1 &
+        # rm -rf `find ./* -maxdepth 0 -type d ! -name "diy"` >/dev/null 2>&1
+        # cd ../
+        # bash diy/master.sh
+        # bash diy/convert_translation.sh
+        # bash diy/create_acl_for_luci.sh -a
+        # bash diy/Modify.sh
+        
+        
+        
+        
+        
+    - name: 上传   ## Upload
+      env: 
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}          ## 项目仓库中添加：ACCESS_TOKEN 令牌值
+      run: |
+        pwd && ls
+        
+        if [ -e $GITHUB_WORKSPACE/LICENSE ]; then          ## 判断！当工作目录内有 LICENSE 文件时，复制到  工作目录/master目录内
+          cp $GITHUB_WORKSPACE/LICENSE $GITHUB_WORKSPACE/${{matrix.target}}
+        fi
+        
+        if [ -e $GITHUB_WORKSPACE/README.md ]; then        ## 判断！ 当有 README.md 文件时，复制到master目录内
+          cp $GITHUB_WORKSPACE/README.md $GITHUB_WORKSPACE/${{matrix.target}}
+        fi
+        
+        cd $GITHUB_WORKSPACE/${{matrix.target}}             ## 进入到master目录内
+        
+        if git status --porcelain | grep .; then            ## 判断！ 当插件有更新差异时，提交，
+          git add .
+          git commit -am "update $(date '+%Y-%m-%d %H:%M:%S')"
+          git push --quiet "https://${{ secrets.ACCESS_TOKEN }}@github.com/zuoweiid/app.git" HEAD:${{matrix.target}}     ## 上传仓库的地址（新创建的仓库）
+          # git remote add origin git@github.com:zuoweiid/app.git
+        else
+          echo "nothing to commit"                          ## 反之提示： “没有什么可提交的”
+          exit 0
+        fi || exit 0    
+        
+    - name: 删除工作流程运行      ## Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+        repository: zuoweiid/openwrt-packages
+        retain_days: 1
+        keep_minimum_runs: 1
