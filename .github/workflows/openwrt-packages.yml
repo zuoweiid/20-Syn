@@ -115,6 +115,6 @@ jobs:
       uses: Mattraks/delete-workflow-runs@main
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
-        repository: zuoweiid/openwrt-packages
+        repository: zuoweiid/luci-app
         retain_days: 1
         keep_minimum_runs: 1
