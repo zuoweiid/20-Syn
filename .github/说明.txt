@@ -1,16 +1,16 @@
-一、先在 Github创建  luci-app 同步插件的仓库目录；
-二、然后本地电脑创建 luci-app 同步插件的仓库目录；
+一、先在 Github创建“luci-app”同步插件的仓库目录；
+二、然后本地电脑创建“luci-app”同步插件的仓库目录；
 # git init                                                                                          ## 初始化仓库
 # git remote add origin git@github.com:zuoweiid/luci-app.git        ## 与 Github 仓库建立远程链接
 （新创建 README.md 文件放在luci-app目录内；提交一次源码，推送一次源码）
 
 
-三、先在 Github创建  20-Syn 同步脚本的仓库目录；
-四、然后本地电脑创建 20-Syn 同步脚本的仓库目录；
+三、先在 Github创建“20-Syn”同步脚本的仓库目录；
+四、然后本地电脑创建“20-Syn”同步脚本的仓库目录；
 # git init                                                                                          ## 初始化仓库
 # git branch -M main                                                                      ## 修改默认分支为 main
 # git remote add origin git@github.com:zuoweiid/20-Syn.git          ## 与 Github 仓库建立远程链接
-（同步脚本源码，放在20-Syn目录内，提交一次源码，推送一次源码）
+（复制同步源码，放在“20-Syn”目录内；提交一次源码，推送一次源码）
 Github仓库绑定 变量令牌值：仓库的设置页面--->>左侧 Actions--->>右侧 创建 Secrets 变量--->>：ACCESS_TOKEN------已生成的令牌值 
 
 修改openwrt-packages.yml工作流 ：
