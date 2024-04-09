@@ -18,7 +18,7 @@ on:
 jobs:
   job_openwrt-packages:
     if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
-    runs-on: ubuntu-latest                 ## ubuntu-最新版
+    runs-on: ubuntu-latest                 ## 使用ubuntu-最新版
 
     name: 更新openwrt-packages             ## 运行工作流的名称 Update openwrt-packages
     strategy:
@@ -51,7 +51,7 @@ jobs:
       run: |
         pwd && ls
         
-        cd $GITHUB_WORKSPACE                            ## 进入仓库工作目录
+        cd $GITHUB_WORKSPACE                            ## 进入仓库工作目录 =仓库名称下的目录
         chmod +x .github/diy/${{matrix.target}}.sh      ## diy目录内的所有脚本  增加可执行的权限
         git clone -b master https://github.com/zuoweiid/luci-app.git ${{matrix.target}}     ## 克隆插件 软件包到master目录内
         cd ${{matrix.target}}                                                               ## 进入master目录内
@@ -67,7 +67,7 @@ jobs:
         bash /$GITHUB_WORKSPACE/.github/diy/create_acl_for_luci.sh -a                   ## 执行create_acl_for_luci.sh  输入报错提示
         bash /$GITHUB_WORKSPACE/.github/diy/Modify.sh                                   ## 执行Modify.sh    删除插件包内（.git .svn 等多余的文件）
 
-        
+        # 在线手动执行步骤
         # cd .github
         # chmod +x .github/diy/*.sh
         # git clone -b master https://github.com/kenzok8/openwrt-packages.git .github/master
@@ -80,6 +80,8 @@ jobs:
         # bash diy/create_acl_for_luci.sh -a
         # bash diy/Modify.sh
         
+        
+        # git remote add origin git@github.com:zuoweiid/luci-app.git   ## 用于将远程仓库与本地仓库进行关联。多余的命令
         
         
         
@@ -104,7 +106,6 @@ jobs:
           git add .
           git commit -am "update $(date '+%Y-%m-%d %H:%M:%S')"
           git push --quiet "https://${{ secrets.ACCESS_TOKEN }}@github.com/zuoweiid/luci-app.git" HEAD:${{matrix.target}}     ## 上传仓库的地址（新创建的仓库）
-          # git remote add origin git@github.com:zuoweiid/luci-app.git
         else
           echo "nothing to commit"                          ## 反之提示： “没有什么可提交的”
           exit 0
