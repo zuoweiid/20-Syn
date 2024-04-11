@@ -99,7 +99,7 @@ git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git           
 # 单独下载
 # 使用方法：git_sparse_clone   openwrt-23.05   "https://github.com/openwrt/openwrt"   "openwrt"    package/base-files   package/network/config/firewall4
 #           git_sparse_clone   分支名          仓库地址                               保存文件名   仓库文件路径         保存至本地的路径
-# git_sparse_clone master "https://github.com/coolsnowwolf/luci" "luci-app-ddns "  applications/luci-app-ddns luci-app-cpufreq luci-app-webadmin luci-app-filetransfer luci-app-unblockmusic luci-app-vlmcsd luci-app-zerotier
+git_sparse_clone master "https://github.com/coolsnowwolf/luci" "luci-app-ddns "  applications/luci-app-ddns luci-app-cpufreq luci-app-webadmin luci-app-filetransfer luci-app-unblockmusic luci-app-vlmcsd luci-app-zerotier
 
 
 # ------------------------------------------------------------------------------------
