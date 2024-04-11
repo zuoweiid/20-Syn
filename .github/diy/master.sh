@@ -18,13 +18,18 @@ rm -rf $1
 }
 
 # 插件源码       # 克隆到 .github 目录内, 与diy、workflows、同个路径
-git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash                       # OenClash小猫咪
-git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1  # passwall1（主要的！！）
-git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主要的！！）
-git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages                                    # passwall上网依赖
-#                    https://github.com/fw876/helloworld
 git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt-packages/luci-app-bypass ./ ; rm -rf openwrt-packages          # bypass（原作者不维护了）
-# git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{luci-app-ssr-plus,tuic-client,shadow-tls} ./ ; rm -rf helloworld   # SSR-Plus + tuic-client + shadow-tls
+git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash                       # OenClash小猫咪
+git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1  # passwall1（主插件！！）
+git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主插件！！）
+git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages                                    # passwall     插件依赖包
+
+
+
+#                    https://github.com/fw876/helloworld
+
+
+git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{luci-app-ssr-plus,tuic-client,shadow-tls} ./ ; rm -rf helloworld   # SSR-Plus + tuic-client + shadow-tls
 # git clone --depth 1 https://github.com/ophub/luci-app-amlogic.git amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic                   # 晶晨宝盒（N1或电视盒子）
 # git clone --depth 1 https://github.com/honwen/luci-app-aliddns																					# 阿里DDNS
 # git clone --depth 1 https://github.com/sbwml/luci-app-alist.git luci-alist && mv -n luci-alist/*alist ./ ; rm -rf luci-alist alist              # luci-app-alist= alist网盘      删除目录：openwrt-alist + alist
@@ -85,8 +90,9 @@ git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt
 
 
 # # 主题源码
-# git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git                          # Argon主题设置
-# git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git                               # Argon主题；匹配Lede源码
+git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git                          # Argon最新主题设置
+git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git                               # Argon最新主题源码（匹配Lede源码）
+
 # # git clone --depth 1 https://github.com/kenzok78/luci-app-argone-config.git                        # Argon主题设置
 # # git clone --depth 1 https://github.com/kenzok78/luci-theme-argone.git                             # Argon主题
 # git clone --depth 1 https://github.com/thinktip/luci-theme-neobird.git                              # neobird主题
