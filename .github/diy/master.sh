@@ -22,7 +22,7 @@ function git_package(){
     mv $2 "$localdir"                            # 移动下载的文件 至 download 目录内；
     rm -rf $repo
 }
-# git_package https://github.com/coolsnowwolf/luci luci/applications/luci-app-ddns # 插件包
+# git_package https://github.com/coolsnowwolf/luci luci/applications/luci-app-ddns # 命令案例
 
 
 
@@ -34,35 +34,37 @@ rm -rf $1
 
 # 插件源码       # 克隆到 .github 目录内, 与diy、workflows、同个路径
 git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt-packages/{luci-app-bypass,lua-maxminddb,lua-neturl} ./ ; rm -rf openwrt-packages     # 保留：luci-app-bypass + 插件依赖包
+###### git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb.git																								  # luci-app-bypass插件中的依赖包
 git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash                       # OenClash小猫咪
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1  # passwall1（主插件！！）
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主插件！！）
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages                                    # passwall     插件依赖包
-
 git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{luci-app-ssr-plus,tuic-client,shadow-tls} ./ ; rm -rf helloworld   # 保留：luci-app-ssr-plus + tuic-client + shadow-tls
 git clone --depth 1 https://github.com/ophub/luci-app-amlogic.git amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic                   # 晶晨宝盒（N1或电视盒子）
-# git clone --depth 1 https://github.com/honwen/luci-app-aliddns																					# 阿里DDNS
-# git clone --depth 1 https://github.com/sbwml/luci-app-alist.git luci-alist && mv -n luci-alist/*alist ./ ; rm -rf luci-alist alist              # luci-app-alist= alist网盘      删除目录：openwrt-alist + alist
-# git clone --depth 1 https://github.com/destan19/OpenAppFilter.git OpenAppFilter && mv -n OpenAppFilter/luci-app-oaf ./; rm -rf OpenAppFilter    # OpenAppFilter 应用访问过滤
-# git clone --depth 1 https://github.com/zzsj0928/luci-app-pushbot.git                                                                            # PushBot 全能推送，改名后
-# git clone --depth 1 https://github.com/sirpdboy/netspeedtest.git                                                                                # 网络速度测试
-# git clone --depth 1 https://github.com/sirpdboy/luci-app-autotimeset.git                                                                        # 定时设置插件
-# git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice.git                                                                     # 设备关机插件
-# git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced.git                                                                           # 系统高级设置
-# git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo && mv -n ddnsgo/luci-app-ddns-go ./; rm -rf ddnsgo                  # ddns-go动态域名
-# git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git                                                                          # 设置向导
-# git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall                   # gost=   adguardhome=   filebrowser= 
-
-# git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb.git
-
-# git clone --depth 1 https://github.com/honwen/luci-app-aliddns.git
-
-# git clone --depth 1 https://github.com/messense/aliyundrive-webdav.git aliyundrive && mv -n aliyundrive/openwrt/* ./ ; rm -rf aliyundrive
+git clone --depth 1 https://github.com/honwen/luci-app-aliddns.git																				# 阿里DDNS
+git clone --depth 1 https://github.com/sbwml/luci-app-alist.git luci-alist && mv -n luci-alist/*alist ./ ; rm -rf luci-alist					# 保留：luci-app-alist + alist（阿雅网盘）
+git clone --depth 1 https://github.com/destan19/OpenAppFilter.git OpenAppFilter && mv -n OpenAppFilter/luci-app-oaf ./; rm -rf OpenAppFilter    # OpenAppFilter 应用访问过滤
+git clone --depth 1 https://github.com/zzsj0928/luci-app-pushbot.git                                                                            # PushBot 全能推送，改名后
+git clone --depth 1 https://github.com/sirpdboy/netspeedtest.git                                                                                # 网络速度测试
+git clone --depth 1 https://github.com/sirpdboy/luci-app-autotimeset.git                                                                        # 定时设置插件
+git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice.git                                                                     # 设备关机插件
+git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced.git                                                                           # 系统高级设置
+git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo && mv -n ddnsgo/luci-app-ddns-go ./; rm -rf ddnsgo                  # ddns-go动态域名
+git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git                                                                          # 设置向导
 
 
+
+
+# git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser gost
+# git clone --depth 1 https://github.com/messense/aliyundrive-webdav.git aliyundrive && mv -n aliyundrive/openwrt/* ./ ; rm -rf aliyundrive		# 保留：aliyundrive-webdav + luci-app-aliyundrive-webdav
 # git clone --depth 1 https://github.com/hubbylei/luci-app-clash.git
-
 # git clone --depth 1 https://github.com/gngpp/luci-app-design-config.git
+
+
+
+
+
+
 
 
 # git clone --depth 1 https://github.com/kiddin9/luci-app-dnsfilter.git
