@@ -24,13 +24,8 @@ git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwa
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主插件！！）
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages                                    # passwall     插件依赖包
 
-
-
-#                    https://github.com/fw876/helloworld
-
-
-git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{luci-app-ssr-plus,tuic-client,shadow-tls} ./ ; rm -rf helloworld   # SSR-Plus + tuic-client + shadow-tls
-# git clone --depth 1 https://github.com/ophub/luci-app-amlogic.git amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic                   # 晶晨宝盒（N1或电视盒子）
+git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{luci-app-ssr-plus,tuic-client,shadow-tls} ./ ; rm -rf helloworld   # 保留：luci-app-ssr-plus + tuic-client + shadow-tls
+git clone --depth 1 https://github.com/ophub/luci-app-amlogic.git amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic                   # 晶晨宝盒（N1或电视盒子）
 # git clone --depth 1 https://github.com/honwen/luci-app-aliddns																					# 阿里DDNS
 # git clone --depth 1 https://github.com/sbwml/luci-app-alist.git luci-alist && mv -n luci-alist/*alist ./ ; rm -rf luci-alist alist              # luci-app-alist= alist网盘      删除目录：openwrt-alist + alist
 # git clone --depth 1 https://github.com/destan19/OpenAppFilter.git OpenAppFilter && mv -n OpenAppFilter/luci-app-oaf ./; rm -rf OpenAppFilter    # OpenAppFilter 应用访问过滤
