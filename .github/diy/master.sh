@@ -12,13 +12,28 @@ rm -rf $localdir
 }
 
 
+function git_package(){
+    repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
+    pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
+# find package/ -follow -name $pkg -not -path "package/openwrt-packages/*" | xargs -rt rm -rf
+    localdir=./                            # 变量= 保存的文件路径
+    git clone --depth=1 --single-branch $1
+    [ -d "$localdir" ] || mkdir -p "$localdir"   # 判断当前是否有 download 目录，如果不存在 则新创建 download 目录；= (-d 判断目录是否存在)  (mkdir -p 判断结果：如果目录不存在，则新创建 download 目录)
+    mv $2 "$localdir"                            # 移动下载的文件 至 download 目录内；
+    rm -rf $repo
+}
+# git_package https://github.com/coolsnowwolf/luci luci/applications/luci-app-ddns # 插件包
+
+
+
+
 function mvdir() {
 mv -n `find $1/* -maxdepth 0 -type d` ./                                       ## 移动分支内所有文件到 当前目录；  -n 不覆盖已存在的文件
 rm -rf $1
 }
 
 # 插件源码       # 克隆到 .github 目录内, 与diy、workflows、同个路径
-git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt-packages/luci-app-bypass ./ ; rm -rf openwrt-packages          # bypass（原作者不维护了）
+git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt-packages/{luci-app-bypass,lua-maxminddb,lua-neturl} ./ ; rm -rf openwrt-packages     # 保留：luci-app-bypass + 插件依赖包
 git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash                       # OenClash小猫咪
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1  # passwall1（主插件！！）
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主插件！！）
@@ -99,7 +114,6 @@ git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git           
 # 单独下载
 # 使用方法：git_sparse_clone   openwrt-23.05   "https://github.com/openwrt/openwrt"   "openwrt"    package/base-files   package/network/config/firewall4
 #           git_sparse_clone   分支名          仓库地址                               保存文件名   仓库文件路径         保存至本地的路径
-git_sparse_clone master "https://github.com/coolsnowwolf/luci" "luci-app-ddns "  applications/luci-app-ddns luci-app-cpufreq luci-app-webadmin luci-app-filetransfer luci-app-unblockmusic luci-app-vlmcsd luci-app-zerotier
 
 
 # ------------------------------------------------------------------------------------
