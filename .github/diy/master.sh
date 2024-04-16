@@ -153,8 +153,8 @@ git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/
 
 
 # # 主题源码
-git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git                          # Argon最新主题设置
-git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git                               # Argon最新主题源码（匹配Lede源码）
+# git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git                          # Argon最新主题设置
+# git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git                               # Argon最新主题源码（匹配Lede源码）
 
 
 
