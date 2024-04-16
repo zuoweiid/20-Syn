@@ -34,7 +34,7 @@ rm -rf $1
 
 # 插件源码       # 克隆到 .github 目录内, 与diy、workflows、同个路径
 git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt-packages/{luci-app-bypass,lua-maxminddb,lua-neturl} ./ ; rm -rf openwrt-packages     # 保留：luci-app-bypass + 插件依赖包
-###### git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb.git																								  # luci-app-bypass插件中的依赖包
+###### git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb.git																								  # luci-app-bypass插件的其中一个依赖包
 git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash                       # OenClash小猫咪
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1  # passwall1（主插件！！）
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主插件！！）
@@ -51,20 +51,54 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice.git     
 git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced.git                                                                           # 系统高级设置
 git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo && mv -n ddnsgo/luci-app-ddns-go ./; rm -rf ddnsgo                  # ddns-go动态域名
 git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git                                                                          # 设置向导
+git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser（网盘） gost
 
 
 
-
-# git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser gost
 # git clone --depth 1 https://github.com/messense/aliyundrive-webdav.git aliyundrive && mv -n aliyundrive/openwrt/* ./ ; rm -rf aliyundrive		# 保留：aliyundrive-webdav + luci-app-aliyundrive-webdav
 # git clone --depth 1 https://github.com/hubbylei/luci-app-clash.git
 # git clone --depth 1 https://github.com/gngpp/luci-app-design-config.git
 
 
 
+# git clone https://github.com/tuanqing/install-program package/install-program                  # 下载N1写入包（编译前勾选：Utilities--> install-program）
+# git clone https://github.com/Hyy2001X/luci-app-autoupdate package/luci-app-autoupdate          # 在线更新固件插件
+# git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff       # 关机插件（不选择！！！）
+# git clone https://github.com/Hyy2001X/luci-app-shutdown package/luci-app-shutdown              # 一键关机/重启
+        
+# git clone https://github.com/destan19/openappfilter.git package/OpenAppFilter                  # 下载OpenAppFilter 应用访问过滤
+# git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan        # 下载ServerChan微信推送
+# git clone https://github.com/zzsj0928/luci-app-serverchand.git package/luci-app-serverchand   # 钉钉机器人推送（已弃用）（不选择！！！）
+# git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot                # PushBot 全能推送，改名后
+# git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic          # 下载新版网易云解锁
+        
+# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon        # 下载新版Argon主题
+# git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config           # 下载新版Argon主题设置
+# git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus     # 京东签到
+# git clone https://github.com/jenson85/luci-theme-darkmatter.git package/luci-theme-darkmatter        # 下载darkmatter黑暗主题
+# git clone https://github.com/rosywrt/luci.git package/luci-rosy                                      # rosy玫瑰红主题
+#git clone https://github.com/project-openwrt/openwrt-tmate.git package/luci-openwrt-tmate            # 不知名主题
+# git clone https://github.com/openwrt-develop/luci-theme-atmaterial package/luci-theme-atmaterial     # 经典主题
+#git clone --depth=1 -b openwrt-18.06 https://github.com/rosywrt/luci-theme-rosy                      # rosy玫瑰红主题
+
+# git clone https://github.com/fangli/openwrt-vm-tools package/otherapp/open-vm-tools                                            ## open-vm-tools 工具；（Utilities--->>open-vm-tools   选择设置为 M 模块化功能）源码自带的有了
+# git clone https://github.com/tindy2013/openwrt-subconverter.git package/otherapp/luci-app-openwrt-subconverter                 ## subconverter 订阅转换
+# git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app-onliner                                       ## nlbwmon 网络带宽监视器  需要luci-app-nlbwmon
+# git clone --depth 1 https://github.com/project-openwrt/openwrt.git package/otherapp/luci-app-diskman                           ## 不显示
+#git clone https://github.com/cjbassi/gotop.git package/otherapp/gotop                      # gotop 活动监视器
+#git clone https://github.com/xxxserxxx/gotop.git package/otherapp/luci-app-gotop   # gotop 活动监视器
 
 
 
+# lede跟Lienol源码增加luci-app-bypass的话，把以下代码放入diy-1.sh里面就行
+# git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
+# svn co https://github.com/garypang13/openwrt-packages/trunk/lua-maxminddb
+# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
+# find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
+
+# Project源码增加luci-app-bypass的话，把以下代码放入diy-1.sh里面就行
+# git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
+# svn co https://github.com/garypang13/openwrt-packages/trunk/lua-maxminddb
 
 
 # git clone --depth 1 https://github.com/kiddin9/luci-app-dnsfilter.git
@@ -97,13 +131,32 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git          
 # # git clone --depth 1 https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/*mosdns ./ ; rm -rf openwrt-mos   # 保留插件：mosdns + luci-app-mosdns
 # git clone --depth 1 https://github.com/sbwml/luci-app-mosdns.git openwrt-mos && mv -n openwrt-mos/{*mosdns,v2dat} ./; rm -rf openwrt-mos      # 保留插件：v2dat + mosdns + luci-app-mosdns
 
+# git clone https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk.git package/otherapp/mentohust                                                ##校园网认证
+# git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk package/otherapp/MentoHUST-OpenWrt-ipk                              ## luci-app-mentohust
+# git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust     # luci-app-mentohust
+
+# git clone --depth=1 https://github.com/garypang13/luci-app-dnsfilter package/luci-app-dnsfilter   # DNS的广告过滤
 
 
+
+# git clone -b master  https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/otherapp/luci-app-unblockneteasemusic   ##解锁网易云（可以编译但是插件无效）
+# git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/otherapp/luci-app-unblockneteasemusic              ##解锁网易云(编译后,不显示插件)
+
+# git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap   #  luci-proto-minieap
+
+
+# git clone --depth=1 https://github.com/KFERMercer/luci-app-dockerman    # Docker
+# git clone --depth=1 https://github.com/lisaac/luci-app-dockerman        # Docker 管理插件
+        
+# git clone --depth=1 https://github.com/project-openwrt/openwrt-gowebdav   # WebDav 服务端程序
+#git clone  https://github.com/bigbugcc/OpenwrtApp package/otherapp/OpenwrtApp           ##作者的插件包
 
 
 # # 主题源码
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git                          # Argon最新主题设置
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git                               # Argon最新主题源码（匹配Lede源码）
+
+
 
 # # git clone --depth 1 https://github.com/kenzok78/luci-app-argone-config.git                        # Argon主题设置
 # # git clone --depth 1 https://github.com/kenzok78/luci-theme-argone.git                             # Argon主题
