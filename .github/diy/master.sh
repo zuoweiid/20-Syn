@@ -53,7 +53,7 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo && m
 git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git                                                                          # 设置向导
 # git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser（网盘） gost（gost VPN隧道）
 git clone --depth 1 https://github.com/kenzok78/luci-app-adguardhome																			# adguardhome
-
+git clone --depth 1 https://github.com/kenzok78/luci-app-filebrowser																			# filebrowser（网盘）
 
 # git clone --depth 1 https://github.com/messense/aliyundrive-webdav.git aliyundrive && mv -n aliyundrive/openwrt/* ./ ; rm -rf aliyundrive		# 保留：aliyundrive-webdav + luci-app-aliyundrive-webdav
 # git clone --depth 1 https://github.com/hubbylei/luci-app-clash.git
