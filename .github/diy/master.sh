@@ -51,7 +51,7 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice.git     
 git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced.git                                                                           # 系统高级设置
 git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo && mv -n ddnsgo/luci-app-ddns-go ./; rm -rf ddnsgo                  # ddns-go动态域名
 git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git                                                                          # 设置向导
-git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser（网盘） gost
+# git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser（网盘） gost（gost VPN隧道）
 
 
 
