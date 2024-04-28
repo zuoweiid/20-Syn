@@ -12,6 +12,7 @@ rm -rf $localdir
 }
 
 
+
 function git_package(){
     repo=`echo $1 | rev | cut -d'/' -f 1 | rev`
     pkg=`echo $2 | rev | cut -d'/' -f 1 | rev`
@@ -26,67 +27,105 @@ function git_package(){
 
 
 
-
 function mvdir() {
 mv -n `find $1/* -maxdepth 0 -type d` ./                                       ## 移动分支内所有文件到 当前目录；  -n 不覆盖已存在的文件
 rm -rf $1
 }
 
 # 插件源码       # 克隆到 .github 目录内, 与diy、workflows、同个路径
-git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt-packages/{luci-app-bypass,lua-maxminddb,lua-neturl} ./ ; rm -rf openwrt-packages     # 保留：luci-app-bypass + 插件依赖包
-###### git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb.git																								  # luci-app-bypass插件的其中一个依赖包
-git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash                       # OenClash小猫咪
+#git clone --depth 1 https://github.com/kiddin9/openwrt-packages && mv -n openwrt-packages/{luci-app-bypass,lua-maxminddb,lua-neturl} ./ ; rm -rf openwrt-packages     # 保留：luci-app-bypass + 插件依赖包
+### git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb.git																								  # luci-app-bypass插件的其中一个依赖包
+
+# OenClash小猫咪
+#git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClash/luci-app-openclash ./; rm -rf OpenClash                       # OenClash小猫咪
+### git clone --depth 1 https://github.com/hubbylei/luci-app-clash.git
+### https://github.com/frainzy1477/luci-app-clash
+
+
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1  # passwall1（主插件！！）
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主插件！！）
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages                                    # passwall     插件依赖包
-git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{luci-app-ssr-plus,tuic-client,shadow-tls} ./ ; rm -rf helloworld   # 保留：luci-app-ssr-plus + tuic-client + shadow-tls
-git clone --depth 1 https://github.com/ophub/luci-app-amlogic.git amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic                   # 晶晨宝盒（N1或电视盒子）
-git clone --depth 1 https://github.com/honwen/luci-app-aliddns.git																				# 阿里DDNS
-git clone --depth 1 https://github.com/sbwml/luci-app-alist.git luci-alist && mv -n luci-alist/*alist ./ ; rm -rf luci-alist					# 保留：luci-app-alist + alist（阿雅网盘）
-git clone --depth 1 https://github.com/destan19/OpenAppFilter.git OpenAppFilter && mv -n OpenAppFilter/luci-app-oaf ./; rm -rf OpenAppFilter    # OpenAppFilter 应用访问过滤
-git clone --depth 1 https://github.com/zzsj0928/luci-app-pushbot.git                                                                            # PushBot 全能推送，改名后
-git clone --depth 1 https://github.com/sirpdboy/netspeedtest.git                                                                                # 网络速度测试
-git clone --depth 1 https://github.com/sirpdboy/luci-app-autotimeset.git                                                                        # 定时设置插件
-git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice.git                                                                     # 设备关机插件
-git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced.git                                                                           # 系统高级设置
-git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo && mv -n ddnsgo/luci-app-ddns-go ./; rm -rf ddnsgo                  # ddns-go动态域名
-git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git                                                                          # 设置向导
-# git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser（网盘） gost（gost VPN隧道）
-git clone --depth 1 https://github.com/kenzok78/luci-app-adguardhome																			# adguardhome
-git clone --depth 1 https://github.com/kenzok78/luci-app-filebrowser																			# filebrowser（网盘）
+
+
+#git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{luci-app-ssr-plus,tuic-client,shadow-tls} ./ ; rm -rf helloworld   # 保留：luci-app-ssr-plus + tuic-client + shadow-tls
+#git clone --depth 1 https://github.com/ophub/luci-app-amlogic.git amlogic && mv -n amlogic/luci-app-amlogic ./;rm -rf amlogic                   # 晶晨宝盒（N1或电视盒子）
+#git clone --depth 1 https://github.com/honwen/luci-app-aliddns.git																				# 阿里DDNS
+#git clone --depth 1 https://github.com/sbwml/luci-app-alist.git luci-alist && mv -n luci-alist/*alist ./ ; rm -rf luci-alist					# 保留：luci-app-alist + alist（阿雅网盘）                   编译报错！！！
+
+### git clone https://github.com/destan19/openappfilter.git package/OpenAppFilter                                                                 # 下载OpenAppFilter 应用访问过滤
+
+#git clone --depth 1 https://github.com/destan19/OpenAppFilter.git OpenAppFilter && mv -n OpenAppFilter/luci-app-oaf ./; rm -rf OpenAppFilter    # OpenAppFilter 应用访问过滤                                 编译报错！！！
+#git clone --depth 1 https://github.com/zzsj0928/luci-app-pushbot.git                                                                            # PushBot 全能推送，改名后
+#git clone --depth 1 https://github.com/sirpdboy/netspeedtest.git                                                                                # 网络速度测试
+#git clone --depth 1 https://github.com/sirpdboy/luci-app-autotimeset.git                                                                        # 插件 执行定时任务
+#git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice.git                                                                     # 设备关机
+### git clone https://github.com/esirplayground/luci-app-poweroff              # 关机插件
+#git clone --depth 1 https://github.com/sirpdboy/luci-app-advanced.git                                                                           # 系统高级设置
+#git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git ddnsgo && mv -n ddnsgo/luci-app-ddns-go ./; rm -rf ddnsgo                  # ddns-go动态域名                                             编译报错！！！
+#git clone --depth 1 https://github.com/sirpdboy/luci-app-netwizard.git                                                                          # 设置向导
+### git clone --depth 1 https://github.com/kenzok8/wall.git && mv -n wall/gost wall/adguardhome wall/filebrowser ./ ; rm -rf wall					# 保留：adguardhome filebrowser（网盘） gost（gost VPN隧道）
+#git clone --depth 1 https://github.com/kenzok78/luci-app-adguardhome																			# adguardhome AD去广告
+#git clone --depth 1 https://github.com/kenzok78/luci-app-filebrowser																			# filebrowser（网盘）                                         编译报错！！！
+
+
+
+
+
+# git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan                                                       # 下载ServerChan微信推送  luci-app-wechatpush                 编译报错！！！
+# git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot                                                               # PushBot 全能推送，改名后
+# git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic          # 下载新版网易云解锁
+# git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app-onliner                                       ## Online User 显示在线主机
+# git clone --depth 1 https://github.com/kiddin9/luci-app-dnsfilter.git                           # DNS 过滤器
+# git clone --depth 1 https://github.com/lisaac/luci-app-dockerman.git dockerman && mv -n dockerman/applications/* ./; rm -rf dockerman        # Docker容器管理
+# git clone --depth 1 https://github.com/ntlf9t/luci-app-easymesh.git	                          # 简单MESH易网
+# git clone --depth 1 https://github.com/Huangjoe123/luci-app-eqos.git	                         # EQoS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # git clone --depth 1 https://github.com/messense/aliyundrive-webdav.git aliyundrive && mv -n aliyundrive/openwrt/* ./ ; rm -rf aliyundrive		# 保留：aliyundrive-webdav + luci-app-aliyundrive-webdav
-# git clone --depth 1 https://github.com/hubbylei/luci-app-clash.git
-# git clone --depth 1 https://github.com/gngpp/luci-app-design-config.git
 
-
-
-# git clone https://github.com/tuanqing/install-program package/install-program                  # 下载N1写入包（编译前勾选：Utilities--> install-program）
-# git clone https://github.com/Hyy2001X/luci-app-autoupdate package/luci-app-autoupdate          # 在线更新固件插件
-# git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff       # 关机插件（不选择！！！）
-# git clone https://github.com/Hyy2001X/luci-app-shutdown package/luci-app-shutdown              # 一键关机/重启
-        
-# git clone https://github.com/destan19/openappfilter.git package/OpenAppFilter                  # 下载OpenAppFilter 应用访问过滤
-# git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan        # 下载ServerChan微信推送
-# git clone https://github.com/zzsj0928/luci-app-serverchand.git package/luci-app-serverchand   # 钉钉机器人推送（已弃用）（不选择！！！）
-# git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot                # PushBot 全能推送，改名后
-# git clone https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic          # 下载新版网易云解锁
-        
-# git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon        # 下载新版Argon主题
-# git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config           # 下载新版Argon主题设置
-# git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus     # 京东签到
+# 主题源码
 # git clone https://github.com/jenson85/luci-theme-darkmatter.git package/luci-theme-darkmatter        # 下载darkmatter黑暗主题
 # git clone https://github.com/rosywrt/luci.git package/luci-rosy                                      # rosy玫瑰红主题
-#git clone https://github.com/project-openwrt/openwrt-tmate.git package/luci-openwrt-tmate            # 不知名主题
+# git clone https://github.com/project-openwrt/openwrt-tmate.git package/luci-openwrt-tmate            # 不知名主题
 # git clone https://github.com/openwrt-develop/luci-theme-atmaterial package/luci-theme-atmaterial     # 经典主题
-#git clone --depth=1 -b openwrt-18.06 https://github.com/rosywrt/luci-theme-rosy                      # rosy玫瑰红主题
+# git clone --depth=1 -b openwrt-18.06 https://github.com/rosywrt/luci-theme-rosy                      # rosy玫瑰红主题
 
+# 编译无效插件
+# git clone --depth 1 https://github.com/gngpp/luci-app-design-config.git
+# git clone https://github.com/zzsj0928/luci-app-serverchand.git package/luci-app-serverchand   # 钉钉机器人推送（已弃用）（菜单不显示！！！）
 # git clone https://github.com/fangli/openwrt-vm-tools package/otherapp/open-vm-tools                                            ## open-vm-tools 工具；（Utilities--->>open-vm-tools   选择设置为 M 模块化功能）源码自带的有了
 # git clone https://github.com/tindy2013/openwrt-subconverter.git package/otherapp/luci-app-openwrt-subconverter                 ## subconverter 订阅转换
-# git clone https://github.com/rufengsuixing/luci-app-onliner.git package/luci-app-onliner                                       ## nlbwmon 网络带宽监视器  需要luci-app-nlbwmon
 # git clone --depth 1 https://github.com/project-openwrt/openwrt.git package/otherapp/luci-app-diskman                           ## 不显示
 #git clone https://github.com/cjbassi/gotop.git package/otherapp/gotop                      # gotop 活动监视器
 #git clone https://github.com/xxxserxxx/gotop.git package/otherapp/luci-app-gotop   # gotop 活动监视器
+
+
+
+# 已删库插件
+# git clone https://github.com/tuanqing/install-program package/install-program                  # 下载N1写入包（编译前勾选：Utilities--> install-program）
+# git clone https://github.com/Hyy2001X/luci-app-autoupdate package/luci-app-autoupdate          # 在线更新固件插件
+# git clone https://github.com/Hyy2001X/luci-app-shutdown package/luci-app-shutdown              # 一键关机/重启
+# git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus     # 京东签到
 
 
 
@@ -101,20 +140,20 @@ git clone --depth 1 https://github.com/kenzok78/luci-app-filebrowser												
 # svn co https://github.com/garypang13/openwrt-packages/trunk/lua-maxminddb
 
 
-# git clone --depth 1 https://github.com/kiddin9/luci-app-dnsfilter.git
-# git clone --depth 1 https://github.com/lisaac/luci-app-dockerman.git dockerman && mv -n dockerman/applications/* ./; rm -rf dockerman
-# git clone --depth 1 https://github.com/ntlf9t/luci-app-easymesh.git
-# git clone --depth 1 https://github.com/Huangjoe123/luci-app-eqos.git
-# git clone --depth 1 https://github.com/kenzok78/luci-app-fileassistant.git
-# git clone --depth 1 https://github.com/immortalwrt/homeproxy.git
-# git clone --depth 1 https://github.com/yaof2/luci-app-ikoolproxy.git
-# git clone --depth 1 https://github.com/linkease/nas-packages-luci.git && mv -n nas-packages-luci/luci/{luci-app-istorex,luci-app-quickstart} ./; rm -rf nas-packages-luci    # 保留插件：luci-app-istorex + luci-app-quickstart
-# rm -rf luci-app-quickstart
+
+
+# git clone --depth 1 https://github.com/kenzok78/luci-app-fileassistant.git              # 文件助手
+# git clone --depth 1 https://github.com/immortalwrt/homeproxy.git           # 家庭代理 报错！！！
+# git clone --depth 1 https://github.com/yaof2/luci-app-ikoolproxy.git      # 爱酷代理
 # git clone --depth 1 https://github.com/jefferymvp/luci-app-koolproxyR.git
 # git clone --depth 1 https://github.com/sirpdboy/luci-app-lucky.git
-
-# git clone --depth 1 https://github.com/sirpdboy/luci-app-partexp.git
+# git clone --depth 1 https://github.com/linkease/nas-packages-luci.git && mv -n nas-packages-luci/luci/{luci-app-istorex,luci-app-quickstart} ./; rm -rf nas-packages-luci    # 保留插件：luci-app-istorex + luci-app-quickstart
+# git clone --depth 1 https://github.com/sirpdboy/luci-app-partexp.git 
 # git clone --depth 1 -b lede https://github.com/pymumu/luci-app-smartdns.git
+
+
+
+
 
 # git clone --depth 1 https://github.com/linkease/istore.git && mv -n istore/luci/* ./; rm -rf istore taskd   # 保留插件：luci-app-store + luci-lib-taskd + luci-lib-xterm
 # # mkdir -p istore && mv {luci-app-store,luci-lib-taskd,luci-lib-xterm,taskd} istore
