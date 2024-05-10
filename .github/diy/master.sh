@@ -45,7 +45,7 @@ git clone --depth 1 https://github.com/vernesong/OpenClash.git && mv -n OpenClas
 
 git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall passwall1 && mv -n passwall1/luci-app-passwall  ./; rm -rf passwall1  # passwall1（主插件！！）
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 passwall2 && mv -n passwall2/luci-app-passwall2 ./;rm -rf passwall2          # passwall2（主插件！！）
-git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages openwrt-passwall-packages                                    # passwall     插件依赖包
+git clone --depth 1 -b main https://github.com/xiaorouji/openwrt-passwall-packages passwall-wall                                 			    # passwall     插件依赖包
 
 git clone --depth 1 https://github.com/fw876/helloworld luci-app-ssr-plus																		# luci-app-ssr-plus
 ### git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/{lua-neturl,shadow-tls,tuic-client,luci-app-ssr-plus} ./ ; rm -rf helloworld   # 保留：luci-app-ssr-plus + tuic-client + shadow-tls
