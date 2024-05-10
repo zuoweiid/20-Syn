@@ -120,11 +120,20 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice.git     
 git clone --depth=1 https://github.com/openwrt-develop/luci-theme-atmaterial.git                       # atmaterials 主题（不推荐）
 ### git clone --depth 1 https://github.com/uparrows/luci-theme-atmaterial.git                          # atmaterials 主题（不推荐）
 
+### git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon                                # 重复的Argon主题
+### git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config                           # 重复的Argon主题
+
 git clone --depth 1 https://github.com/gngpp/luci-theme-design.git					                   # 黑暗主题，   针对移动端优化
 git clone --depth 1 https://github.com/gngpp/luci-app-design-config.git                                # 黑暗主题设置
 
 git clone --depth 1 https://github.com/thinktip/luci-theme-neobird.git                                 # neobird主题，针对移动端优化
 git clone --depth=1 -b openwrt-18.06 https://github.com/rosywrt/luci-theme-rosy                        # rosy玫瑰红主题
+
+### git clone --depth 1 https://github.com/sirpdboy/luci-theme-opentopd                                  # 橙色主题
+### git clone --depth 1 https://github.com/kenzok8/luci-theme-ifit ifit && mv -n ifit/luci-theme-ifit ./;rm -rf ifit
+
+### git clone --depth 1 https://github.com/kenzok78/luci-theme-argone
+### git clone --depth 1 https://github.com/kenzok78/luci-app-argone-config
 
 # git clone --depth 1 https://github.com/apollo-ng/luci-theme-darkmatter.git
 ### git clone --depth 1 https://github.com/jenson85/luci-theme-darkmatter.git                          # 下载darkmatter黑暗主题（不显示，无效）
@@ -198,7 +207,7 @@ git clone --depth=1 -b openwrt-18.06 https://github.com/rosywrt/luci-theme-rosy 
 #sed -i '65,73d' adguardhome/Makefile
 #sed -i '/^\t\$(call Build\/Prepare\/Default)/a \\tif [ -d "$(BUILD_DIR)\/AdGuardHome-$(PKG_VERSION)" ]; then \\\n\t\tmv "$(BUILD_DIR)\/AdGuardHome-$(PKG_VERSION)\/"* "$(BUILD_DIR)\/adguardhome-$(PKG_VERSION)\/"; \\\n\tfi' adguardhome/Makefile
 #sed -i '/gzip -dc $(DL_DIR)\/$(FRONTEND_FILE) | $(HOST_TAR) -C $(PKG_BUILD_DIR)\/ $(TAR_OPTIONS)/a \\t( cd "$(BUILD_DIR)\/adguardhome-$(PKG_VERSION)"; go mod tidy )' adguardhome/Makefile
-rm -rf adguardhome/patches
+#rm -rf adguardhome/patches
 #sed -i '59s/.*/local port=luci.sys.exec("awk \x27\/^dns:\/ {found_dns=1} found_dns \x26\x26 \/\^ port:\/ {print $2; exit}\x27 "..configpath.." 2>nul")/' luci-app-adguardhome/luasrc/model/cbi/AdGuardHome/base.lua
 
 rm -rf ./*/.git ./*/.gitattributes ./*/.svn ./*/.github ./*/.gitignore create_acl_for_luci.err create_acl_for_luci.ok create_acl_for_luci.warn      # 删除多余的文件，比如：.git   .gitattributes  .svn    .github   .gitignore

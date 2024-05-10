@@ -42,14 +42,29 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         chmod +x .github/diy/${{matrix.target}}.sh
-        git clone -b master https://github.com/kenzok8/litte.git ${{matrix.target}}
+        git clone -b master https://github.com/zuoweiid/backup.git ${{matrix.target}}
+        
+        if [ -d $GITHUB_WORKSPACE/.github/404 ]; then          ## 判断！当有 404 目录时移动至上级目录，
+            mv ${{matrix.target}}/* $GITHUB_WORKSPACE/.github/404
+        else
+            mkdir -p $GITHUB_WORKSPACE/.github/404             ## 创建 404 目录
+            
+            cd $GITHUB_WORKSPACE
+            mv ${{matrix.target}}/404 ./
+        fi
+        
         cd ${{matrix.target}}
+        
         git rm -r --cache * >/dev/null 2>&1 &
         rm -rf `find ./* -maxdepth 0 -type d ! -name "commit"` >/dev/null 2>&1     
         $GITHUB_WORKSPACE/.github/diy/litte.sh
         bash /$GITHUB_WORKSPACE/.github/diy/convert_translation.sh
         bash /$GITHUB_WORKSPACE/.github/diy/create_acl_for_luci.sh -a
         bash /$GITHUB_WORKSPACE/.github/diy/Modify.sh
+        
+        cd $GITHUB_WORKSPACE
+        mv $GITHUB_WORKSPACE/.github/404 ${{matrix.target}}            ## 移动 404 目录到 litte 目录内
+
 
     - name: Upload
       env: 
